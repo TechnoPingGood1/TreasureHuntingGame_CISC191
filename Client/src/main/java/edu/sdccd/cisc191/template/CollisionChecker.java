@@ -40,6 +40,7 @@ public class CollisionChecker {
 
         int tileNum1, tileNum2;
 
+        //Module 2
         // Switch based on the entity's direction to check for collisions
         switch(entity.direction){
             case "up":

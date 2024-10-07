@@ -107,6 +107,7 @@ public class TileManager {
     }
 
     /**
+     * (Module 2)
      * Draws the tiles on the screen based on the player's position and world coordinates.
      *
      * @param g2 The Graphics2D object used to draw tiles.
