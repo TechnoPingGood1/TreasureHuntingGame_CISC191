@@ -4,8 +4,18 @@ import edu.sdccd.cisc191.template.GamePanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class OBJ_Blueheart  extends SuperObject{
+    /**
+     * Represents the Blueheart object in the game
+     */
+    public class OBJ_Blueheart  extends SuperObject{
     GamePanel gp;
+
+        /**
+         * Constructs a Blueheart object.
+         *
+         * @param gp The game panel where the object is placed.
+         *
+         */
 
     public OBJ_Blueheart(GamePanel gp){
         this.gp = gp;

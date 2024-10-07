@@ -3,11 +3,21 @@ package edu.sdccd.cisc191.template.template;
 import java.io.IOException;
 import java.net.*;
 
+/**
+ * The GameClient class represents a client that communicates with a server
+ * using the UDP protocol. It sends and receives data packets and runs on a separate thread.
+ */
 public class GameClient extends Thread {
 
     private InetAddress ipAddress;
     private DatagramSocket socket;
 
+    /**
+     * Constructs a GameClient that connects to a server via the provided IP address.
+     * Also prints the local IP address of the client.
+     *
+     * @param ipAddress The IP address of the game server.
+     */
     public GameClient(String ipAddress) {
         try {
             this.socket = new DatagramSocket();
@@ -20,6 +30,10 @@ public class GameClient extends Thread {
         }
     }
 
+    /**
+     * Continuously listens for incoming packets from the server and prints the received message.
+     * This method runs in a separate thread.
+     */
     public void run() {
         while (true) {
             byte[] data = new byte[1024];
@@ -33,6 +47,11 @@ public class GameClient extends Thread {
         }
     }
 
+    /**
+     * Sends data to the server as a byte array via UDP.
+     *
+     * @param data The byte array to be sent to the server.
+     */
     public void sendData(byte[] data) {
         DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, 1331);
         try {

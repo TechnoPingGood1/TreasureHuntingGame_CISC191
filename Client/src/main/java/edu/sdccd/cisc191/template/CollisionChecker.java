@@ -2,13 +2,30 @@ package edu.sdccd.cisc191.template;
 
 import edu.sdccd.cisc191.template.entity.Entity;
 
+/**
+ * This class is responsible for checking collisions between entities and tiles or objects in the game.
+ * It handles collision detection based on the direction and movement of the entity.
+ */
+
 public class CollisionChecker {
     GamePanel gp;
 
+    /**
+     * Constructor for the CollisionChecker class.
+     * It initializes the class with a reference to the current game panel.
+     *
+     * @param gp The current game panel.
+     */
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
-
     }
+
+    /**
+     * Checks for collisions between an entity and the surrounding tiles based on the entity's direction.
+     * If a collision is detected, the entity's collision flag is set to true.
+     *
+     * @param entity The entity whose collision is being checked.
+     */
     public void checkTile(Entity entity) {
 
         int entityLeftWorldX = entity.worldX + entity.solidArea.x;
@@ -23,6 +40,7 @@ public class CollisionChecker {
 
         int tileNum1, tileNum2;
 
+        // Switch based on the entity's direction to check for collisions
         switch(entity.direction){
             case "up":
                 entityTopRow = (entityTopWorldY - entity.speed)/gp.tileSize;
@@ -60,6 +78,13 @@ public class CollisionChecker {
 
     }
 
+    /**
+     * Checks for collisions between the entity and game objects.
+     *
+     * @param entity The entity to check collisions for.
+     * @param player True if the entity is the player, false otherwise.
+     * @return The index of the object the entity collided with, or 999 if no collision.
+     */
     public int checkObject(Entity entity, boolean player) {
         int index = 999;
         for(int i=0; i < gp.obj.length; i++) {

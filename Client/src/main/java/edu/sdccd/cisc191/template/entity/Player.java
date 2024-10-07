@@ -8,16 +8,31 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Player  extends Entity {
+/**
+ * Represents the player in the game.
+ */
 
+public class Player  extends Entity {
+    /** Part of GamePanel class */
     GamePanel gp;
+
+    /** The key handler for user input */
     KeyHandler keyH;
+
+    /** The number of key has collected */
     public int hasKey =0;
 
+    /** The player's position on the screen */
     public final int screenX;
     public final int screenY;
 
-
+    /**
+     * Construtcs a new Player with a reference to the game panel and key handler.
+     *
+     *
+     * @param gp The game panel
+     * @param keyH The key handler for user inputs
+     */
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
@@ -37,12 +52,19 @@ public class Player  extends Entity {
         getPlayerImage();
     }
 
+    /**
+     * Sets the default values for the player's initial position and movement.
+     */
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         speed = 4;
         direction = "down";
     }
+
+    /**
+     * Loads the player image for different directions.
+     */
 
     public void getPlayerImage() {
 
@@ -57,6 +79,15 @@ public class Player  extends Entity {
 
     }
 
+    /**
+     * Loads and sets up the player's sprite images.
+     *
+     * This method is used to initialize the player's image for each direction
+     * by loading them for the resources
+     *
+     * @param imageName The path to the image file for the player's sprite.
+     * @return A BufferedImage object representing the player's sprite.
+     */
     public BufferedImage setUp(String imageName){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -71,6 +102,9 @@ public class Player  extends Entity {
 
     }
 
+    /**
+     * Updates the player's movement based on the input key handler
+     */
     public  void update(){
         // Game logic updates here
         // Y values increases when they go down
@@ -132,6 +166,12 @@ public class Player  extends Entity {
 
     }
 
+
+    /**
+     * Handles interactions when the player picks up an object.
+     *
+     * @param i The index of the object.
+     */
     public void pickUpObject(int i){
         if(i != 999){
             String objectName = gp.obj[i].name;
@@ -170,11 +210,13 @@ public class Player  extends Entity {
 
     }
 
+    /**
+     * Draw the player on the screen at the appropriate position.
+     *
+     * @param g2 The graphics context used for drawing the player.
+     */
+
     public void draw(Graphics2D g2){
-//        g2.setColor(Color.WHITE);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
-
-
         BufferedImage image = null;
 
         //Character Movement

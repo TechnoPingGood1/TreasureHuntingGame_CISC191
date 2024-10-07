@@ -5,14 +5,28 @@ import edu.sdccd.cisc191.template.OBJS.OBJ_Chest;
 import edu.sdccd.cisc191.template.OBJS.OBJ_Door;
 import edu.sdccd.cisc191.template.OBJS.OBJ_Key;
 
+/**
+ * The AssetSetter class is responsible for placing game objects such as keys, door, chest,
+ * blue heart in the game world.
+ */
 public class AssetSetter {
 
     GamePanel gp;
 
+    /**
+     * Constructs a new AssetSetter instance and asociates it with a specific GamePanel
+     *
+     * @param gp The GamePanel instance that this AssetSetter interacts with.
+     */
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
     }
 
+    /**
+     * (Module 1)
+     * Places objects like keys, doors, chests, and blue hearts in the game world.
+     * Each object is placed at a specific location based on the world coordinates.
+     */
     public void setObject(){
         // Keys
         gp.obj[0] = new OBJ_Key(gp);

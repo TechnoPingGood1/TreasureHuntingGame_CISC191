@@ -4,20 +4,39 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
+/**
+ * The UI class handles the user interface rendering for the game, including the title screen,
+ * messages, game-over screen, and in-game UI elements like the player's playtime and keys.
+ */
 public class UI {
 
     GamePanel gp;
+    // Graphics object for rendering
     Graphics g2;
+    // Fonts for UI text
     Font arial_40, arial_60B;
+    // Image for the key icon
     BufferedImage keyImage;
+    // Indicates whether a message is currently displayed
     public boolean messageOn;
+    // Stores the current message text
     public String message = "";
+    // Counter for message display duration
     int messageCounter = 0;
+    // To indicate if the game is finished
     public boolean gameFinished = false;
+    // Stores the player's playtime
     public double playTime;
+    // Format for playtime display
     public DecimalFormat dFormat = new DecimalFormat("0.00");
+    // Tracks the current selected command (e.g., in menu)
     public int commandNum =0;
 
+    /**
+     * Constructor for the UI class. Initializes fonts and loads the key image.
+     *
+     * @param gp The GamePanel instance used to manage game rendering and logic.
+     */
     public UI(GamePanel gp) {
         this.gp = gp;
         arial_40 = new Font("Arial", Font.PLAIN, 35);
@@ -26,11 +45,21 @@ public class UI {
         keyImage = key.image;
     }
 
+    /**
+     * Displays a message on the screen for a set duration.
+     *
+     * @param text The message to display.
+     */
     public void showMessage(String text) {
         message = text;
         messageOn = true;
     }
 
+    /**
+     * Handles drawing the UI elements, including title screen, game-over screen, and other game states.
+     *
+     * @param g2 The Graphics2D object used for drawing the UI elements.
+     */
     public void draw(Graphics2D g2) {
         this.g2 = g2;
 
@@ -92,17 +121,11 @@ public class UI {
             }
         }
 
-//        // Play State
-//        if(gp.gameState == gp.playState){
-//            // Will develop later on
-//        }
-//
-//        // Pause State
-//        if(gp.gameState == gp.pauseState) {
-//            drawPauseScreen();
-//        }
     }
 
+    /**
+     * Draws the title screen of the game, including the game title, an image, and a menu with "New Game" and "Quit" options.
+     */
     public void drawTitleScreen() {
         g2.setColor(new Color(0, 0, 0));
         g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
@@ -144,10 +167,11 @@ public class UI {
             g2.drawString(">",x-gp.tileSize,y);
         }
 
-
-
     }
 
+    /**
+     * Draws the pause screen with the text "PAUSED" centered on the screen.
+     */
     public void drawPauseScreen(){
         String text = "PAUSED";
         int x = getXforCenteredText(text);
@@ -156,6 +180,12 @@ public class UI {
         g2.drawString(text,x,y);
     }
 
+    /**
+     * Helper method to get the X-coordinate needed to center the given text on the screen.
+     *
+     * @param text The text to be centered.
+     * @return The X-coordinate where the text should be drawn to be centered.
+     */
     public int getXforCenteredText(String text){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x= gp.screenWidth/2 - length/2;

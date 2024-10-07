@@ -8,12 +8,20 @@ import edu.sdccd.cisc191.template.UtilityTool;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+/** This class manages the tiles in the game world
+ * It loads tile images, handles the map, and renders tiles on the screen.
+ */
 public class TileManager {
 
     GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
 
+    /**
+     * Constructs a TileManager for the specified GamePanel.
+     *
+     * @param gp the GamePanel instance that this TileManager will manage tiles for.
+     */
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
@@ -27,6 +35,9 @@ public class TileManager {
         loadMap("/map/world01.txt");
     }
 
+    /**
+     * Loads the tile images and sets up their collision.
+     */
     public void getTileImage() {
 
             setUp(0,"grass01", false);
@@ -35,10 +46,15 @@ public class TileManager {
             setUp(3,"earth", false);
             setUp(4,"tree", true);
             setUp(5,"sand", false);
-
-
     }
 
+    /**
+     * Configures a tile by loading its image and setting its collision property.
+     *
+     * @param index the index of the tile array (module 1)
+     * @param imageName The name of the image file to load for this tile.
+     * @param collision True if the tile has collision, otherwise false.
+     */
     public void setUp(int index, String imageName, boolean collision) {
         UtilityTool uTool = new UtilityTool();
         try{
@@ -53,6 +69,11 @@ public class TileManager {
         }
     }
 
+    /**
+     * Loads the map from a text file and stores tile information for each position.
+     *
+     * @param path1 The path for the map file.
+     */
     public void loadMap(String path1){
         try{
             InputStream is = getClass().getResourceAsStream(path1);
@@ -85,7 +106,11 @@ public class TileManager {
         }
     }
 
-
+    /**
+     * Draws the tiles on the screen based on the player's position and world coordinates.
+     *
+     * @param g2 The Graphics2D object used to draw tiles.
+     */
     public void draw(Graphics2D g2){
         int worldCol = 0;
         int worldRow = 0;

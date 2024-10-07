@@ -4,23 +4,48 @@ import edu.sdccd.cisc191.template.template.GameClient;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * KeyHandler class handles keyboard input for the game. It implements the KeyListener interface and processes
+ * key events such as key press and release for different game states like title, play, and pause.
+ */
 public class KeyHandler implements KeyListener {
 
+    // Networking component (not fully implemented in this snippet)
     GameClient socketClient;
+
+    // Reference to the main game panel
     GamePanel gp;
+
+    //Movement
     public boolean upPressed, downPressed, leftPressed, rightPressed;
-    //Debug
+
+    //Debug for checking draw time
     boolean checkDrawTime = false;
 
+    /**
+     * Constructor for KeyHandler.
+     *
+     * @param gp Reference to the main game panel for handling game states and interactions
+     */
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
 
-
+    /**
+     * Invoked when a key has been typed.
+     * Not used in this implementation.
+     *
+     * @param e the key event
+     */
     @Override
     public void keyTyped(KeyEvent e) {}
 
-    // Return the int keyCode associated with the key in this event
+    /**
+     * Invoked when a key has been pressed.
+     * Handles input for the title state, gameplay movement, and debug mode.
+     *
+     * @param e the key event
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
@@ -49,10 +74,6 @@ public class KeyHandler implements KeyListener {
                     // Quit selected
                     System.exit(0);
                 }
-//                if (code == KeyEvent.VK_ENTER) {
-//                    socketClient.sendData("Player pressed enter".getBytes());
-//                }
-
             }
         }
 
@@ -86,6 +107,12 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    /**
+     * Invoked when a key has been released.
+     * Stops movement for the appropriate direction.
+     *
+     * @param e the key event
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();

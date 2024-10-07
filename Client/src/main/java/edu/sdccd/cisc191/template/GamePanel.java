@@ -9,6 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 
+/**
+ * The GamePanel class is responsible for rendering and managing the game state.
+ * It handles input, updates the player, and manages game objects and tiles.
+ * This class extends JPanel and implements the Runnable interface.
+ */
 public class GamePanel extends JPanel implements Runnable {
 
     // Screen settings
@@ -56,9 +61,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Networking
     private NetworkManager networkManager;  // Use NetworkManager
-
     private PlayerTimeManager timeManager = new PlayerTimeManager();
 
+    // Constructor initializes game panel settings and adds key listeners
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
@@ -70,12 +75,18 @@ public class GamePanel extends JPanel implements Runnable {
         networkManager = new NetworkManager();
     }
 
+    /**
+     * Set up the game environment by initializing objects and playing background music.
+     */
     public void setupGame() {
         aSetter.setObject();
         playMusic(0);
         gameState = titleState;
     }
 
+    /**
+     * Starts the game loop by creating a new thread for the game.
+     */
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
@@ -85,6 +96,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * The main game loop, responsible for updating game logic and rendering frames.
+     */
+    @Override
     public void run() {
         double drawInterval = 1000000000 / FPS;
         double delta = 0;
@@ -106,15 +121,12 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
                 drawCount++;
             }
-
-//            if(timer >= 1000000000) {
-//                System.out.println("FPS: " + drawCount);
-//                drawCount = 0;
-//                timer = 0;
-//            }
         }
     }
 
+    /**
+     * Updates the game state by updating the player and checking game state.
+     */
     public void update() {
         // Game logic updates here
         if (gameState == playState) {
@@ -132,6 +144,11 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * Paints the game screen by drawing titles, objects, and the player.
+     *
+     * @param g The graphics object used for rendering.
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -175,29 +192,59 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 
+    /**
+     * Play background music by setting the sound file and starting playback
+     *
+     * @param i The index of the sound file to play
+     */
     public void playMusic(int i) {
         music.setFile(i);
         music.play();
         music.loop();
     }
 
+    /**
+     * Stops the currently playing music.
+     */
     public void stopMusic() {
         music.stop();
     }
 
+    /**
+     * Plays a music effect.
+     *
+     * @param i The index of the sound effect file.
+     */
     public void playSE(int i) {
         soundEffect.setFile(i);
         soundEffect.play();
     }
 
+    /**
+     *  Returns the PlayTimeManager instance used to track and manage
+     *  the player's playtime during the game.
+     *
+     *  @return PLayTimeManager instance thT manages playtime
+     */
     public PlayerTimeManager getTimeManager() {
         return timeManager;
     }
 
+    /**
+     * Returns the UI instance for the game. This instance handles
+     * all user interface rendering and interactions.
+     *
+     * @return the UI instance that manages game UI elements.
+     */
     public UI getUi() {
         return ui;
     }
 
+    /**
+     * Sets the current state of the game.
+     *
+     * @param state the new state to set for the game (e.g., playState, pauseState)
+     */
     public void setGameState(int state) {
         gameState = state;
     }
