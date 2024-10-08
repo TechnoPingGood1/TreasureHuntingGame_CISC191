@@ -224,7 +224,7 @@ public class GamePanel extends JPanel implements Runnable {
      *  Returns the PlayTimeManager instance used to track and manage
      *  the player's playtime during the game.
      *
-     *  @return PLayTimeManager instance thT manages playtime
+     *  @return PLayTimeManager instance the manages playtime
      */
     public PlayerTimeManager getTimeManager() {
         return timeManager;

@@ -10,7 +10,7 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener {
 
-    // Networking component (not fully implemented in this snippet)
+    // Networking component
     GameClient socketClient;
 
     // Reference to the main game panel

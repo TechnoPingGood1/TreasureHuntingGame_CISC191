@@ -14,7 +14,7 @@ public class AssetSetter {
     GamePanel gp;
 
     /**
-     * Constructs a new AssetSetter instance and asociates it with a specific GamePanel
+     * Constructs a new AssetSetter instance and associates it with a specific GamePanel
      *
      * @param gp The GamePanel instance that this AssetSetter interacts with.
      */
