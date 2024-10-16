@@ -58,6 +58,5 @@ public class NetworkManager {
      * or perform any necessary actions upon game completion.
      */
     public void checkGameCompletion() {
-
     }
 }

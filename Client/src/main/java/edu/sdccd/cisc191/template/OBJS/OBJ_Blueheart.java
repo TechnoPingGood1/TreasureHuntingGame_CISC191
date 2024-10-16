@@ -29,4 +29,8 @@ import java.io.IOException;
             e.printStackTrace();
         }
     }
+
+    public int getBlueHeart(int number){
+        return number;
+    }
 }
